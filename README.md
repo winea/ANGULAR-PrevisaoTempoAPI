@@ -1,27 +1,95 @@
-# JvWeather
+node v12.16.3
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
+angular cli 9.1.7
 
-## Development server
+API site: https://openweathermap.org/ criar usuario
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+API keys copia a key 74dce856bcb4e8c316f8637f34d0be0e
 
-## Code scaffolding
+adiciona a key no enviroment.ts
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+em tslint.json colocar Component e Page ira permitir criar componentes com sufixo
 
-## Build
+"component-class-suffix": [
+      true,
+      "Component",
+      "Page"
+    ],
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+criar home model
 
-## Running unit tests
+ng g m pages/model
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ng g m pages/bookmarks
 
-## Running end-to-end tests
+ng c pages/home --type page
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+ng c pages/bookmarks --type page
 
-## Further help
+STATE MANAGER REDUX
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+redux para angular site ngrx.io state manager 
+
+nossa aplicacao reaje a alteracoes na Store 
+
+Store(definimos como json) que ira guardar estados interessantes da aplica��o
+
+Componente ira consumir a Store por meio de Selector
+
+Componente realiza Acao e por meio de um Reducer armazena na Store 
+
+a Acao pode desencadear Efeitos (chamadas de Servicos)
+
+instalar ngrx
+
+npm install @ngrx/store --save
+
+no app.module.ts
+
+ apos instalar @ngrx/store cria STORE
+
+    StoreModule.forRoot({}),
+
+ No home.module.ts inserir Store, primeiro parametro chave, segundo reducer
+
+	StoreModule.forFeature('home', homeReducer),
+
+Instalar ngrx devtools
+
+npm install @ngrx/store-devtools --save
+
+Instalar effects
+
+npm install @ngrx/effects --save
+
+Boa Pratica comecar pelas actions -> reducer -> effects
+
+ng g s shared/services/weather --skipTests true
+
+Use a aba Redux no chrome devtools para ver as actions em efeito
+
+ng g m pages/details
+
+ng g c pages/details/containers/details --type page
+
+Na API vamos usar onecall (usar coordenadas)
+
+criar Router Guard para garantir que a URL esta correta
+
+ng g s pages/details/services/details.guard --skipTests
+
+ngrx colocar estado da rota na STORE, documentacao @ngrx/router-store
+
+npm install @ngrx/router-store --save
+
+ng add ngx-bootstrap
+
+ver a documentacao no ngx-bootstrap Typeahead
+
+async using http request
+
+ng g c shared/components/cities-typeahead
+
+site material.angular.io ver a documentacao de portal
+
+npm i @angular/cdk
